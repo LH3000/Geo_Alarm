@@ -2,7 +2,7 @@
   <string name="app_name">Geo Alarm</string>
   <string name="app_title">Geo Alarm</string>
 
-  <string name="action_delete_all">Delete All Geofences</string>
+  <string name="action_delete_all">Delete All Alarms</string>
 
   <!-- Dialogs -->
   <string name="AreYouSure">Are you sure?</string>
@@ -15,15 +15,15 @@
   <string name="Button.DeleteGeofence">DELETE</string>
 
   <!-- Labels -->
-  <string name="Label.Name">Name</string>
+  <string name="Label.Notes">Notes</string>
   <string name="Label.Latitude">Latitude</string>
   <string name="Label.Longitude">Longitude</string>
   <string name="Label.Radius">Radius</string>
-  <string name="Label.AddGeofence">Add a Geofence</string>
-  <string name="Label.EmptyState">You haven\'t created any geofences yet. Tap the plus button to create one.\n\n\nWill we ever get there?! :]</string>
+  <string name="Label.AddAlarm">Add a Alarm</string>
+  <string name="Label.EmptyState">There\'s no alarm yet. Tap the plus button to create one.</string>
 
   <!-- Hints -->
-  <string name="Hint.Name">Name for the geofence</string>
+  <string name="Hint.Notes">Add notes</string>
   <string name="Hint.Latitude" formatted="false">Latitude (%3.1f\u00B0 to %3.1f\u00B0)</string>
   <string name="Hint.Longitude" formatted="false">Longitude (%4.1f\u00B0 to %4.1f\u00B0) </string>
   <string name="Hint.Radius" formatted="false">Radius (%3.2f to %3.1f km)</string>

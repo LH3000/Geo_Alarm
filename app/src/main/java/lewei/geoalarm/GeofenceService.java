@@ -13,19 +13,16 @@ import android.util.Log;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 import com.google.gson.Gson;
-import lewei.geoalarm.Constants;
-import lewei.geoalarm.NamedGeofence;
-import lewei.geoalarm.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class AreWeThereIntentService extends IntentService {
+public class GeofenceService extends IntentService {
 
   // region Properties
 
-  private final String TAG = AreWeThereIntentService.class.getName();
+  private final String TAG = GeofenceService.class.getName();
 
   private SharedPreferences prefs;
   private Gson gson;
@@ -34,8 +31,8 @@ public class AreWeThereIntentService extends IntentService {
 
   // region Constructors
 
-  public AreWeThereIntentService() {
-    super("AreWeThereIntentService");
+  public GeofenceService() {
+    super("GeofenceService");
   }
 
   // endregion
@@ -72,7 +69,7 @@ public class AreWeThereIntentService extends IntentService {
 
   private void onEnteredGeofences(List<String> geofenceIds) {
     for (String geofenceId : geofenceIds) {
-      String geofenceName = "";
+      String geofenceNotes = "";
 
       // Loop over all geofence keys in prefs and retrieve NamedGeofence from SharedPreference
       Map<String, ?> keys = prefs.getAll();
@@ -80,13 +77,13 @@ public class AreWeThereIntentService extends IntentService {
         String jsonString = prefs.getString(entry.getKey(), null);
         NamedGeofence namedGeofence = gson.fromJson(jsonString, NamedGeofence.class);
         if (namedGeofence.id.equals(geofenceId)) {
-          geofenceName = namedGeofence.name;
+          geofenceNotes = namedGeofence.name;
           break;
         }
       }
 
       // Set the notification text and send the notification
-      String contextText = String.format(this.getResources().getString(R.string.Notification_Text), geofenceName);
+      String contextText = geofenceNotes;
 
       NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
       Intent intent = new Intent(this, AllGeofencesActivity.class);
@@ -94,7 +91,7 @@ public class AreWeThereIntentService extends IntentService {
       PendingIntent pendingNotificationIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
       Notification notification = new NotificationCompat.Builder(this)
-              .setSmallIcon(R.mipmap.ic_launcher)
+              .setSmallIcon(R.mipmap.place_marker)
               .setContentTitle(this.getResources().getString(R.string.Notification_Title))
               .setContentText(contextText)
               .setContentIntent(pendingNotificationIntent)
@@ -102,7 +99,9 @@ public class AreWeThereIntentService extends IntentService {
               .setPriority(NotificationCompat.PRIORITY_HIGH)
               .setAutoCancel(true)
               .build();
-      notificationManager.notify(0, notification);
+      if (notificationManager != null) {
+        notificationManager.notify(0, notification);
+      }
 
     }
   }

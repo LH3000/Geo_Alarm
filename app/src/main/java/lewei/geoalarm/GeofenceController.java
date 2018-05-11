@@ -16,7 +16,6 @@ import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
-import lewei.geoalarm.NamedGeofence;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -175,7 +174,7 @@ public class GeofenceController {
   private GoogleApiClient.ConnectionCallbacks connectionAddListener = new GoogleApiClient.ConnectionCallbacks() {
     @Override
     public void onConnected(Bundle bundle) {
-      Intent intent = new Intent(context, AreWeThereIntentService.class);
+      Intent intent = new Intent(context, GeofenceService.class);
       PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
       PendingResult<Status> result = LocationServices.GeofencingApi.addGeofences(googleApiClient, getAddGeofencingRequest(), pendingIntent);
       result.setResultCallback(new ResultCallback<Status>() {

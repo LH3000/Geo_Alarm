@@ -10,14 +10,14 @@
       android:layout_margin="@dimen/Margin.Standard"
       android:layout_gravity="center"
       style="@style/TextView.Header"
-      android:text="@string/Label.AddGeofence"/>
+      android:text="@string/Label.AddAlarm" />
 
   <EditText
       android:id="@+id/fragment_add_geofence_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       style="@style/EditText"
-      android:hint="@string/Hint.Name"/>
+      android:hint="@string/Hint.Notes" />
 
   <EditText
       android:id="@+id/fragment_add_geofence_latitude"
