@@ -7,4 +7,9 @@
       android:title="@string/action_delete_all"
       android:orderInCategory="100"
       app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_replay_welcome"
+        android:orderInCategory="100"
+        android:title="@string/action_replay"
+        app:showAsAction="never" />
 </menu>

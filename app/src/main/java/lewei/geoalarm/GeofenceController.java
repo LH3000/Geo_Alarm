@@ -35,7 +35,8 @@ public class GeofenceController {
   private GeofenceControllerListener listener;
 
   private List<NamedGeofence> namedGeofences;
-  public List<NamedGeofence> getNamedGeofences() {
+
+    public List<NamedGeofence> getNamedGeofences() {
     return namedGeofences;
   }
 

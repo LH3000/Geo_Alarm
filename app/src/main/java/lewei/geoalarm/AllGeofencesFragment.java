@@ -12,13 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import lewei.geoalarm.GeofenceController;
-import lewei.geoalarm.NamedGeofence;
-import lewei.geoalarm.R;
 import com.software.shell.fab.ActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AllGeofencesFragment extends Fragment implements AddGeofenceFragment.AddGeofenceFragmentListener {
 
@@ -86,23 +84,28 @@ public class AllGeofencesFragment extends Fragment implements AddGeofenceFragmen
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     int id = item.getItemId();
-    if (id == R.id.action_delete_all) {
-      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-      builder.setMessage(R.string.AreYouSure)
-              .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                  GeofenceController.getInstance().removeAllGeofences(geofenceControllerListener);
-                }
-              })
-              .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                  // User cancelled the dialog
-                }
-              })
-              .create()
-              .show();
-      return true;
-    }
+      if (id == R.id.action_delete_all) {
+          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+          builder.setMessage(R.string.AreYouSure)
+                  .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                      public void onClick(DialogInterface dialog, int id) {
+                          GeofenceController.getInstance().removeAllGeofences(geofenceControllerListener);
+                      }
+                  })
+                  .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                      public void onClick(DialogInterface dialog, int id) {
+                          // User cancelled the dialog
+                      }
+                  })
+                  .create()
+                  .show();
+          return true;
+      } else if (id == R.id.action_replay_welcome) {
+          PrefManager prefManager = new PrefManager(Objects.requireNonNull(getActivity()).getApplicationContext());
+
+          // make first time launch TRUE
+          prefManager.setFirstTimeLaunch(true);
+      }
 
     return super.onOptionsItemSelected(item);
   }

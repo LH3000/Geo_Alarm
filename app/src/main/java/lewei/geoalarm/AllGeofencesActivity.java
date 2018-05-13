@@ -1,17 +1,14 @@
 package lewei.geoalarm;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import lewei.geoalarm.AllGeofencesFragment;
-import lewei.geoalarm.GeofenceController;
-import lewei.geoalarm.R;
 
-public class AllGeofencesActivity extends ActionBarActivity {
+public class AllGeofencesActivity extends AppCompatActivity {
 
   // region Overrides
 
@@ -35,6 +32,8 @@ public class AllGeofencesActivity extends ActionBarActivity {
     getMenuInflater().inflate(R.menu.menu_all_geofences, menu);
 
     MenuItem item = menu.findItem(R.id.action_delete_all);
+      MenuItem item1 = menu.findItem(R.id.action_replay_welcome);
+      item1.setVisible(true);
 
     if (GeofenceController.getInstance().getNamedGeofences().size() == 0) {
       item.setVisible(false);

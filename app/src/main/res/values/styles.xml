@@ -62,4 +62,9 @@
     <item name="android:background">@color/Divider</item>
   </style>
 
+    <style name="MyMaterialDialog" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
